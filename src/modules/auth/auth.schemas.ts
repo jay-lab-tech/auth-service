@@ -13,5 +13,21 @@ export const loginSchema = z.strictObject({
     password: z.string().min(1).max(128),
 });
 
+export const refreshSchema = z.strictObject({
+    refreshToken: z.string().min(40).max(200),
+});
+
+export const logoutSchema = refreshSchema;
+
+export const changeRoleSchema = z.strictObject({
+    role: z.enum(['USER', 'ADMIN']),
+});
+
+export const paginationSchema = z.object({
+    page: z.coerce.number().int().min(1).default(1),
+    limit: z.coerce.number().int().min(1).max(100).default(20),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+export type RefreshInput = z.infer<typeof refreshSchema>;

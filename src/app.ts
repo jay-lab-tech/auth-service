@@ -2,7 +2,10 @@ import express from 'express';
 import helmet from 'helmet';
 import { prisma } from './config/database.js';
 import { redis } from './config/redis.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 import { authRouter } from './modules/auth/auth.routes.js';
+import { adminRouter } from './modules/user/admin.routes.js';
+import { userRouter } from './modules/user/user.routes.js';
 
 export const app = express();
 
@@ -10,6 +13,8 @@ app.disable('x-powered-by');
 app.use(helmet());
 app.use(express.json({ limit: '10kb' }));
 app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
+app.use('/api', adminRouter);
 
 app.get('/health', async (_request, response) => {
   const [databaseCheck, redisCheck] = await Promise.allSettled([
@@ -31,3 +36,8 @@ app.get('/health', async (_request, response) => {
     },
   });
 });
+
+app.use((_request, response) => {
+  response.status(404).json({ error: { code: 'NOT_FOUND', message: 'Route tidak ditemukan' } });
+});
+app.use(errorHandler);
