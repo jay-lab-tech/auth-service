@@ -2,12 +2,14 @@ import express from 'express';
 import helmet from 'helmet';
 import { prisma } from './config/database.js';
 import { redis } from './config/redis.js';
+import { authRouter } from './modules/auth/auth.routes.js';
 
 export const app = express();
 
 app.disable('x-powered-by');
 app.use(helmet());
 app.use(express.json({ limit: '10kb' }));
+app.use('/api/auth', authRouter);
 
 app.get('/health', async (_request, response) => {
   const [databaseCheck, redisCheck] = await Promise.allSettled([
