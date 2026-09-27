@@ -1,8 +1,8 @@
 # Auth Service API
 
-A portfolio project that demonstrates how to build an authentication API with **Express 5, TypeScript, PostgreSQL, Prisma, and Redis**. It covers the core session lifecycle—from registration and login through refresh-token rotation and logout—plus role-based access control and audit logging.
+An authentication REST API built with **Express 5, TypeScript, PostgreSQL, Prisma, and Redis**. It covers the core session lifecycle—from registration and login through refresh-token rotation and logout—plus role-based access control and audit logging.
 
-> This is a learning and portfolio project, not a hosted identity provider or a production-ready OAuth/OIDC service.
+> This service currently provides its own REST authentication endpoints. It is not an OAuth/OIDC identity provider.
 
 ## Features
 
@@ -247,7 +247,7 @@ docker-compose.yml      Local API + PostgreSQL + Redis stack
 
 ## Security scope
 
-This repository is intended as a portfolio demonstration. Before exposing it to the public internet, use HTTPS, production-grade secrets and database credentials, restricted network access, backups, and monitoring. The project does not currently implement email verification, password reset, OAuth/OIDC client registration, or account-recovery workflows, so it should not be presented as a general-purpose identity provider.
+Before exposing this service to the public internet, use HTTPS, production-grade secrets and database credentials, restricted network access, backups, and monitoring. The project does not currently implement email verification, password reset, OAuth/OIDC client registration, or account-recovery workflows, so it is not a general-purpose identity provider.
 
 ## License
 
