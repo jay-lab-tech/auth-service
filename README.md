@@ -86,6 +86,7 @@ npm run build
 - The Compose PostgreSQL credentials are intended only for local development. Set strong credentials and network restrictions before any public deployment.
 - Access tokens embed the role but protected requests also load the current account state/role from PostgreSQL, so role changes and deactivation take effect promptly.
 - Login rate limiting uses the client IP seen by Express. If deployed behind a reverse proxy, configure trusted proxy addresses deliberately; do not blindly trust arbitrary forwarded headers.
+- Prisma 7.10 currently pins vulnerable versions of two CLI dependencies, so `package.json` overrides them to patched `deepmerge-ts@8.0.1` and `mysql2@3.23.1`. `npm audit` is clean with these overrides; rerun Prisma generation/migration tests when upgrading Prisma, and remove the overrides after upstream pins are fixed.
 - Before production use, add TLS, operational secret management, monitoring/backups, and a deployment-specific review of the threat model.
 
 ## License
