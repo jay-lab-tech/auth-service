@@ -6,11 +6,13 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import { authRouter } from './modules/auth/auth.routes.js';
 import { adminRouter } from './modules/user/admin.routes.js';
 import { userRouter } from './modules/user/user.routes.js';
+import { corsMiddleware } from './middlewares/cors.js';
 
 export const app = express();
 
 app.disable('x-powered-by');
 app.use(helmet());
+app.use(corsMiddleware);
 app.use(express.json({ limit: '10kb' }));
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
