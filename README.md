@@ -1,5 +1,7 @@
 # Auth Service API
 
+![CI](https://github.com/jay-lab-tech/auth-service/actions/workflows/ci.yml/badge.svg)
+
 An authentication REST API built with **Express 5, TypeScript, PostgreSQL, Prisma, and Redis**. It covers the core session lifecycle—from registration and login through refresh-token rotation and logout—plus role-based access control and audit logging.
 
 > This service currently provides its own REST authentication endpoints. It is not an OAuth/OIDC identity provider.
