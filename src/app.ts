@@ -7,6 +7,7 @@ import { authRouter } from './modules/auth/auth.routes.js';
 import { adminRouter } from './modules/user/admin.routes.js';
 import { userRouter } from './modules/user/user.routes.js';
 import { corsMiddleware } from './middlewares/cors.js';
+import path from 'node:path';
 
 export const app = express();
 
@@ -14,6 +15,11 @@ app.disable('x-powered-by');
 app.use(helmet());
 app.use(corsMiddleware);
 app.use(express.json({ limit: '10kb' }));
+app.get(['/docs', '/docs/'], (_request, response) => {
+  response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' data: https:");
+  response.sendFile(path.resolve('docs/index.html'));
+});
+app.use('/docs', express.static('docs'));
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api', adminRouter);

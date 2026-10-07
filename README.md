@@ -147,6 +147,7 @@ If that container name or port is already in use, keep using the existing Redis 
 ## API reference
 
 The complete OpenAPI 3.0 contract is available at [`docs/openapi.yaml`](docs/openapi.yaml). It can be imported into Swagger UI, Insomnia, or Postman.
+When running the API, interactive Swagger UI is available at `http://localhost:3000/docs`.
 
 Most successful responses return a `data` property; logout may return an empty `204` when there was no active session to revoke. Errors return `error.code` and `error.message` (validation errors may also include `error.details`). Protected routes require `Authorization: Bearer <accessToken>`.
 

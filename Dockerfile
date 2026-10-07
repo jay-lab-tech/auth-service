@@ -1,8 +1,4 @@
-FROM node:24-bookworm-slim
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends openssl \
-    && rm -rf /var/lib/apt/lists/*
+FROM node:24-bookworm
 
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -10,6 +6,7 @@ RUN npm ci
 
 COPY prisma ./prisma
 COPY prisma7.config.ts tsconfig.json ./
+COPY docs ./docs
 COPY src ./src
 RUN DATABASE_URL=postgresql://postgres:postgres@localhost:5432/auth_service npm run db:generate && npm run build
 
