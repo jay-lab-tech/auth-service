@@ -16,7 +16,7 @@ app.use(helmet());
 app.use(corsMiddleware);
 app.use(express.json({ limit: '10kb' }));
 app.get(['/docs', '/docs/'], (_request, response) => {
-  response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' data: https:");
+  response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' data: https:; object-src 'none'; base-uri 'self'");
   response.sendFile(path.resolve('docs/index.html'));
 });
 app.use('/docs', express.static('docs'));
