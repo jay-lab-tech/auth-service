@@ -264,3 +264,9 @@ No license has been selected. Until a `LICENSE` file is added, do not assume oth
 - [Detailed API reference](API.md)
 - [Security policy and limitations](SECURITY.md)
 - [Changelog](CHANGELOG.md)
+
+### Live API documentation
+
+Captured from the running local API at `/docs`:
+
+![Auth Service Swagger UI](output/playwright/api-docs.png)
